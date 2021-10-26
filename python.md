@@ -1,10 +1,9 @@
 import random
-
+scores = [12]
 
 def start_game():    
-    scores = [12]
     high_score = min(scores)
-
+    guess = 0
     print("""
     ==================================
     Welcome to the random number game!
@@ -12,24 +11,42 @@ def start_game():
     """)
     answer = random.randrange(1, 10)
     print("{} is the highscore".format(high_score))
-    try:
-        guess = int(input("Pick a number between 1-10:  "))
 
-    except ValueError:
-        guess = int(input("Please type a number:  "))
+    while guess == 0:
+        try:
+            guess = int(input("Pick a number between 1-10:  "))
+
+        except ValueError:
+            print("Please type a number")
+
+
+
+
+
     score = 0
-
-
     while guess != answer:
         score += 1
         if guess > 10:
-            guess = int(input("Oops, {} is higher than 10, try again:  ".format(guess)))
+            try:
+                guess = int(input("Oops, {} is higher than 10, try again:  ".format(guess)))
+            except ValueError:
+                print("Oops, that's not a number")
+
         elif guess < 1:
-            guess = int(input("Oops, {} number is lower than 1, try again:  ".format(guess)))
+            try:
+                guess = int(input("Oops, {} number is lower than 1, try again:  ".format(guess)))
+            except ValueError:
+                print("Oops, that's not a number")
         if guess > answer:
-            guess = int(input("It's lower, try again:  "))
+            try:
+                guess = int(input("It's lower, try again:  "))
+            except ValueError:
+                print("Oops, that's not a number")
         elif guess < answer:
-            guess = int(input("It's higher, try again:  "))
+            try:
+                guess = int(input("It's higher, try again:  "))
+            except ValueError:
+                print("Oops, that's not a number")
 
 
     if guess == answer:
@@ -48,6 +65,11 @@ def start_game():
             print("Okay, have a nice day!")
         else:
             print("I'll take that as a no. Bye")
+
+
+
+
+
 
 
 start_game()
